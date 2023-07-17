@@ -1,3 +1,6 @@
+## an alert system to send a message to the user about 
+## all long running queries in the snowflake database 
+
 import snowflake.connector
 import smtplib
 from email.mime.text import MIMEText
