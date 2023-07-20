@@ -1,8 +1,10 @@
 from datetime import datetime, timedelta
 from airflow import DAG
+from airflow.models import Variable
+from airflow.operators.python_operator import PythonOperator
 from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
 from airflow.providers.snowflake.sensors.sql import SnowflakeSQLSensor
-from airflow.operators.email_operator import EmailOperator
+from airflow.operators import EmailOperator
 
 default_args = {
     'owner': 'airflow',
@@ -46,9 +48,10 @@ def send_email_alert(**kwargs):
             email_body += f"Query ID: {query_id}, Duration: {duration} seconds\nQuery Text: {query_text}\n\n"
 
         # Send email
+        recipients = Variable.get("email_recipients", default_var="")
         email_operator = EmailOperator(
             task_id='send_email_alert',
-            to='recipient@example.com',
+            to=recipients,
             subject=email_subject,
             html_content=email_body,
             dag=dag
