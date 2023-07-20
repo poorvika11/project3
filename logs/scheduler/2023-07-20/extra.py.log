@@ -1,0 +1,56 @@
+[2023-07-20T12:15:14.431+0000] {processor.py:153} INFO - Started process (PID=3936) to work on /opt/airflow/dags/extra.py
+[2023-07-20T12:15:14.433+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/extra.py for tasks to queue
+[2023-07-20T12:15:14.435+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:15:14.435+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/extra.py
+[2023-07-20T12:15:14.501+0000] {logging_mixin.py:137} WARNING - /home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py:243 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2023-07-20T12:15:14.534+0000] {processor.py:753} INFO - DAG(s) dict_keys(['long_running_queries_alert']) retrieved from /opt/airflow/dags/extra.py
+[2023-07-20T12:15:14.757+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:15:14.756+0000] {manager.py:504} INFO - Created Permission View: can read on DAG:long_running_queries_alert
+[2023-07-20T12:15:14.768+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:15:14.768+0000] {manager.py:504} INFO - Created Permission View: can delete on DAG:long_running_queries_alert
+[2023-07-20T12:15:14.776+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:15:14.776+0000] {manager.py:504} INFO - Created Permission View: can edit on DAG:long_running_queries_alert
+[2023-07-20T12:15:14.778+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:15:14.777+0000] {dag.py:2676} INFO - Sync 1 DAGs
+[2023-07-20T12:15:14.796+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:15:14.796+0000] {dag.py:2697} INFO - Creating ORM DAG for long_running_queries_alert
+[2023-07-20T12:15:14.813+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:15:14.812+0000] {dag.py:3427} INFO - Setting next_dagrun for long_running_queries_alert to 2023-06-30T00:00:00+00:00, run_after=2023-07-01T00:00:00+00:00
+[2023-07-20T12:15:14.832+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/extra.py took 0.405 seconds
+[2023-07-20T12:15:45.650+0000] {processor.py:153} INFO - Started process (PID=3974) to work on /opt/airflow/dags/extra.py
+[2023-07-20T12:15:45.653+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/extra.py for tasks to queue
+[2023-07-20T12:15:45.655+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:15:45.655+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/extra.py
+[2023-07-20T12:15:45.704+0000] {logging_mixin.py:137} WARNING - /home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py:243 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2023-07-20T12:15:45.712+0000] {processor.py:753} INFO - DAG(s) dict_keys(['long_running_queries_alert']) retrieved from /opt/airflow/dags/extra.py
+[2023-07-20T12:15:45.753+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:15:45.752+0000] {dag.py:2676} INFO - Sync 1 DAGs
+[2023-07-20T12:15:45.786+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:15:45.786+0000] {dag.py:3427} INFO - Setting next_dagrun for long_running_queries_alert to 2023-06-30T00:00:00+00:00, run_after=2023-07-01T00:00:00+00:00
+[2023-07-20T12:15:45.808+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/extra.py took 0.163 seconds
+[2023-07-20T12:16:15.986+0000] {processor.py:153} INFO - Started process (PID=4026) to work on /opt/airflow/dags/extra.py
+[2023-07-20T12:16:15.989+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/extra.py for tasks to queue
+[2023-07-20T12:16:15.991+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:16:15.991+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/extra.py
+[2023-07-20T12:16:16.032+0000] {logging_mixin.py:137} WARNING - /home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py:243 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2023-07-20T12:16:16.041+0000] {processor.py:753} INFO - DAG(s) dict_keys(['long_running_queries_alert']) retrieved from /opt/airflow/dags/extra.py
+[2023-07-20T12:16:16.078+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:16:16.078+0000] {dag.py:2676} INFO - Sync 1 DAGs
+[2023-07-20T12:16:16.108+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:16:16.108+0000] {dag.py:3427} INFO - Setting next_dagrun for long_running_queries_alert to 2023-06-30T00:00:00+00:00, run_after=2023-07-01T00:00:00+00:00
+[2023-07-20T12:16:16.127+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/extra.py took 0.145 seconds
+[2023-07-20T12:16:46.311+0000] {processor.py:153} INFO - Started process (PID=4096) to work on /opt/airflow/dags/extra.py
+[2023-07-20T12:16:46.314+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/extra.py for tasks to queue
+[2023-07-20T12:16:46.316+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:16:46.316+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/extra.py
+[2023-07-20T12:16:46.367+0000] {logging_mixin.py:137} WARNING - /home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py:243 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2023-07-20T12:16:46.377+0000] {processor.py:753} INFO - DAG(s) dict_keys(['long_running_queries_alert']) retrieved from /opt/airflow/dags/extra.py
+[2023-07-20T12:16:46.422+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:16:46.422+0000] {dag.py:2676} INFO - Sync 1 DAGs
+[2023-07-20T12:16:46.478+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/extra.py took 0.172 seconds
+[2023-07-20T12:17:16.649+0000] {processor.py:153} INFO - Started process (PID=4148) to work on /opt/airflow/dags/extra.py
+[2023-07-20T12:17:16.652+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/extra.py for tasks to queue
+[2023-07-20T12:17:16.653+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:17:16.653+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/extra.py
+[2023-07-20T12:17:16.700+0000] {logging_mixin.py:137} WARNING - /home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py:243 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2023-07-20T12:17:16.711+0000] {processor.py:753} INFO - DAG(s) dict_keys(['long_running_queries_alert']) retrieved from /opt/airflow/dags/extra.py
+[2023-07-20T12:17:16.757+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:17:16.756+0000] {dag.py:2676} INFO - Sync 1 DAGs
+[2023-07-20T12:17:16.811+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/extra.py took 0.166 seconds
+[2023-07-20T12:17:46.839+0000] {processor.py:153} INFO - Started process (PID=4186) to work on /opt/airflow/dags/extra.py
+[2023-07-20T12:17:46.841+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/extra.py for tasks to queue
+[2023-07-20T12:17:46.844+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:17:46.843+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/extra.py
+[2023-07-20T12:17:46.907+0000] {logging_mixin.py:137} WARNING - /home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py:243 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2023-07-20T12:17:46.916+0000] {processor.py:753} INFO - DAG(s) dict_keys(['long_running_queries_alert']) retrieved from /opt/airflow/dags/extra.py
+[2023-07-20T12:17:46.957+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:17:46.957+0000] {dag.py:2676} INFO - Sync 1 DAGs
+[2023-07-20T12:17:47.007+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/extra.py took 0.173 seconds
+[2023-07-20T12:18:17.179+0000] {processor.py:153} INFO - Started process (PID=4230) to work on /opt/airflow/dags/extra.py
+[2023-07-20T12:18:17.181+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/extra.py for tasks to queue
+[2023-07-20T12:18:17.184+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:18:17.183+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/extra.py
+[2023-07-20T12:18:17.230+0000] {logging_mixin.py:137} WARNING - /home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py:243 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2023-07-20T12:18:17.239+0000] {processor.py:753} INFO - DAG(s) dict_keys(['long_running_queries_alert']) retrieved from /opt/airflow/dags/extra.py
+[2023-07-20T12:18:17.278+0000] {logging_mixin.py:137} INFO - [2023-07-20T12:18:17.278+0000] {dag.py:2676} INFO - Sync 1 DAGs
+[2023-07-20T12:18:17.327+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/extra.py took 0.153 seconds

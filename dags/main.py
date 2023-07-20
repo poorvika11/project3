@@ -1,10 +1,9 @@
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.models import Variable
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.email_operator import EmailOperator
+from airflow.operators.python_operator import PythonOperator, ShortCircuitOperator
 from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
-from airflow.providers.snowflake.sensors.sql import SnowflakeSQLSensor
-from airflow.operators import EmailOperator
 
 default_args = {
     'owner': 'airflow',
@@ -36,6 +35,12 @@ get_long_running_queries_task = SnowflakeOperator(
     dag=dag
 )
 
+# Task to check if there are any long-running queries
+def has_long_running_queries(**kwargs):
+    ti = kwargs['ti']
+    query_results = ti.xcom_pull(task_ids='get_long_running_queries')
+    return bool(query_results)
+
 # Task to send email alert with the long-running queries
 def send_email_alert(**kwargs):
     ti = kwargs['ti']
@@ -58,15 +63,15 @@ def send_email_alert(**kwargs):
         )
         email_operator.execute(context=kwargs)
 
-# Task to wait for long_running_queries_task to complete
-query_sensor = SnowflakeSQLSensor(
-    task_id='query_sensor',
-    sql=long_running_queries_query,
-    conn_id=snowflake_conn_id,
+# ShortCircuitOperator to check if there are any long-running queries
+check_long_running_queries_task = ShortCircuitOperator(
+    task_id='check_long_running_queries',
+    python_callable=has_long_running_queries,
+    provide_context=True,
     dag=dag
 )
 
-# Task to send email alert using PythonOperator
+# Task to call the Python function to send email alert
 send_email_alert_task = PythonOperator(
     task_id='send_email_alert_task',
     python_callable=send_email_alert,
@@ -75,4 +80,4 @@ send_email_alert_task = PythonOperator(
 )
 
 # Define the task dependencies
-get_long_running_queries_task >> query_sensor >> send_email_alert_task
+get_long_running_queries_task >> check_long_running_queries_task >> send_email_alert_task
