@@ -2,8 +2,8 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.models import Variable
 from airflow.operators.email_operator import EmailOperator
-from airflow.operators.python_operator import PythonOperator, ShortCircuitOperator
 from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
+from airflow.operators.python import PythonOperator, ShortCircuitOperator 
 
 default_args = {
     'owner': 'airflow',
