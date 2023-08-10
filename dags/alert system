@@ -32,15 +32,28 @@ def check_and_send_email(**kwargs):
     """
     
     # Execute the query using the SnowflakeHook
-    query_results = snowflake_hook.get_records(long_running_queries_query)
+    query_results = snowflake_hook.get_records(sql=long_running_queries_query)
     
     # Prepare email content
     if query_results:
         email_subject = "Long Running Queries Alert"
         email_body = "The following queries have been running for more than 5 minutes:\n\n"
         for row in query_results:
-            query_id, query_text, start_time, end_time, duration = row
-            email_body += f"Query ID: {query_id}, Duration: {duration} seconds\nQuery Text: {query_text}\n\n"
+            query_id = row['QUERY_ID']
+            query_text = row['QUERY_TEXT']
+            
+            start_time = row['START_TIME']
+            formatted_start_time = start_time.strftime('%Y-%m-%d %H:%M:%S')  # Format as desired
+            
+            end_time = row['END_TIME']
+            formatted_end_time = end_time.strftime('%Y-%m-%d %H:%M:%S')  # Format as desired
+            
+            duration = row['DURATION']
+            
+            email_body += f"Query ID: {query_id}, Duration: {duration} seconds\n"
+            email_body += f"Query Text: {query_text}\n"
+            email_body += f"Start Time: {formatted_start_time}\n"
+            email_body += f"End Time: {formatted_end_time}\n\n"
         
         # Send email
         recipients = Variable.get("email_recipients", default_var="")
@@ -62,3 +75,5 @@ check_and_send_email_task = PythonOperator(
 )
 
 check_and_send_email_task
+
+
