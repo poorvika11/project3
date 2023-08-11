@@ -3,7 +3,7 @@ from airflow import DAG
 from airflow.models import Variable
 from airflow.operators.email_operator import EmailOperator
 from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
-from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.empty import EmptyOperator
 from airflow.operators.python_operator import PythonOperator
 
 default_args = {
@@ -78,8 +78,8 @@ check_and_send_email_task = PythonOperator(
     dag=dag
 )
 
-# DummyOperator as a placeholder if no query results
-no_query_results_task = DummyOperator(
+# EmptyOperator as a placeholder if no query results
+no_query_results_task = EmptyOperator(
     task_id='no_query_results',
     dag=dag
 )
