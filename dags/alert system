@@ -3,8 +3,8 @@ from airflow import DAG
 from airflow.models import Variable
 from airflow.operators.email_operator import EmailOperator
 from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
-from airflow.operators.python import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.python_operator import PythonOperator
 
 default_args = {
     'owner': 'airflow',
@@ -34,25 +34,28 @@ def check_and_send_email(**kwargs):
     
     # Execute the query using the SnowflakeHook
     query_results = snowflake_hook.get_records(sql=long_running_queries_query)
-    if query_results:
+    
+    # If query results, send email
+    if query_results and query_results[0]:
+        query_data = query_results[0][0]  # Accessing the dictionary inside the nested list
+        
+        query_id = query_data['QUERY_ID']
+        query_text = query_data['QUERY_TEXT']
+            
+        start_time = query_data['START_TIME']
+        formatted_start_time = start_time.strftime('%Y-%m-%d %H:%M:%S')  # Format as desired
+            
+        end_time = query_data['END_TIME']
+        formatted_end_time = end_time.strftime('%Y-%m-%d %H:%M:%S')  # Format as desired
+            
+        duration = query_data['DURATION']
+            
         email_subject = "Long Running Queries Alert"
-        email_body = "The following queries have been running for more than 5 minutes:\n\n"
-        for row in query_results:
-            query_id = row['QUERY_ID']
-            query_text = row['QUERY_TEXT']
-            
-            start_time = row['START_TIME']
-            formatted_start_time = start_time.strftime('%Y-%m-%d %H:%M:%S')  # Format as desired
-            
-            end_time = row['END_TIME']
-            formatted_end_time = end_time.strftime('%Y-%m-%d %H:%M:%S')  # Format as desired
-            
-            duration = row['DURATION']
-            
-            email_body += f"Query ID: {query_id}, Duration: {duration} seconds\n"
-            email_body += f"Query Text: {query_text}\n"
-            email_body += f"Start Time: {formatted_start_time}\n"
-            email_body += f"End Time: {formatted_end_time}\n\n"
+        email_body = f"The following query has been running for more than 5 minutes:\n\n"
+        email_body += f"Query ID: {query_id}, Duration: {duration} seconds\n"
+        email_body += f"Query Text: {query_text}\n"
+        email_body += f"Start Time: {formatted_start_time}\n"
+        email_body += f"End Time: {formatted_end_time}\n\n"
         
         # Send email
         recipients = Variable.get("email_recipients", default_var="")
@@ -64,6 +67,7 @@ def check_and_send_email(**kwargs):
             dag=dag
         )
         email_operator.execute(context=kwargs)
+        return 'send_email_alert'
     else:
         return 'no_query_results'
 
@@ -75,6 +79,7 @@ check_and_send_email_task = PythonOperator(
     dag=dag
 )
 
+# DummyOperator as a placeholder if no query results
 no_query_results_task = DummyOperator(
     task_id='no_query_results',
     dag=dag
@@ -82,5 +87,3 @@ no_query_results_task = DummyOperator(
 
 # Define the task dependencies
 check_and_send_email_task >> [no_query_results_task]
-
-
