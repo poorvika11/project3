@@ -21,7 +21,7 @@ The DAG performs the following steps:
 - The DAG is scheduled to run daily.
 - The `SnowflakeHook` is used to execute the query against the Snowflake database.
 - The results of the query are processed, and if long-running queries are found, an email is sent using the `EmailOperator`.
-- If no long-running queries are found, a `DummyOperator` is used as a placeholder.
+- If no long-running queries are found, a `EmptyOperator` is used as a placeholder.
 
 ## Configuration Steps
 
