@@ -43,4 +43,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-Feel free to customize and enhance this README file based on your project's specific details and requirements.
