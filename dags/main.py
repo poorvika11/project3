@@ -45,7 +45,9 @@ def has_long_running_queries(**kwargs):
 def send_email_alert(**kwargs):
     ti = kwargs['ti']
     query_results = ti.xcom_pull(task_ids='get_long_running_queries')
-    if query_results:
+    if not query_results:
+        return None
+    else:
         email_subject = "Long Running Queries Alert"
         email_body = "The following queries have been running for more than 5 minutes:\n\n"
         for row in query_results:
