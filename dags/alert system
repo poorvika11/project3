@@ -37,25 +37,24 @@ def check_and_send_email(**kwargs):
     
     # If query results, send email
     if query_results and query_results[0]:
-        query_data = query_results[0][0]  # Accessing the dictionary inside the nested list
-        
-        query_id = query_data['QUERY_ID']
-        query_text = query_data['QUERY_TEXT']
-            
-        start_time = query_data['START_TIME']
-        formatted_start_time = start_time.strftime('%Y-%m-%d %H:%M:%S')  # Format as desired
-            
-        end_time = query_data['END_TIME']
-        formatted_end_time = end_time.strftime('%Y-%m-%d %H:%M:%S')  # Format as desired
-            
-        duration = query_data['DURATION']
-            
         email_subject = "Long Running Queries Alert"
-        email_body = f"The following query has been running for more than 5 minutes:\n\n"
-        email_body += f"Query ID: {query_id}, Duration: {duration} seconds\n"
-        email_body += f"Query Text: {query_text}\n"
-        email_body += f"Start Time: {formatted_start_time}\n"
-        email_body += f"End Time: {formatted_end_time}\n\n"
+        email_body = "The following queries have been running for more than 5 minutes:\n\n"
+        for record in query_results[0]:  # Iterate through all records
+            query_id = record['QUERY_ID']
+            query_text = record['QUERY_TEXT']
+            
+            start_time = record['START_TIME']
+            formatted_start_time = start_time.strftime('%Y-%m-%d %H:%M:%S')  # Format as desired
+            
+            end_time = record['END_TIME']
+            formatted_end_time = end_time.strftime('%Y-%m-%d %H:%M:%S')  # Format as desired
+            
+            duration = record['DURATION']
+            
+            email_body += f"Query ID: {query_id}, Duration: {duration} seconds\n"
+            email_body += f"Query Text: {query_text}\n"
+            email_body += f"Start Time: {formatted_start_time}\n"
+            email_body += f"End Time: {formatted_end_time}\n\n"
         
         # Send email
         recipients = Variable.get("email_recipients", default_var="")
